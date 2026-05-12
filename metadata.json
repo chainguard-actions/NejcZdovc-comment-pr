@@ -1,0 +1,7 @@
+{
+  "owner": "NejcZdovc",
+  "name": "comment-pr",
+  "visibility": "internal",
+  "description": "Add comments in the PR with your GitHub Actions workflow.",
+  "block_publish": false
+}
