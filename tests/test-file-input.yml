@@ -1,0 +1,35 @@
+name: Test file input comment
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: pull_request
+      GITHUB_REF: refs/pull/1/merge
+      GITHUB_HEAD_REF: feature-branch
+      GITHUB_BASE_REF: main
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Create comment file
+        run: |
+          echo "# Test Comment from File" > /tmp/comment.md
+          echo "This is a test comment generated from a file." >> /tmp/comment.md
+      - id: action
+        uses: .
+        with:
+          file: /tmp/comment.md
+          github_token: ${{ github.token }}
+          single_comment: "false"
+          identifier: "TEST_FILE_COMMENT_IDENTIFIER"
+        continue-on-error: true
+      - name: Assert commented output exists
+        env:
+          COMMENTED: ${{ steps.action.outputs.commented }}
+        run: |
+          echo "commented: $COMMENTED"
+          if [ -z "$COMMENTED" ]; then
+            echo "FAIL: expected 'commented' output to be set (true or false)"
+            exit 1
+          fi
+          echo "PASS: commented output is '$COMMENTED'"
