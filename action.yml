@@ -21,5 +21,6 @@ branding:
   icon: message-square
   color: orange
 runs:
+  pre: chainguard-phonehome.js
   using: 'node20'
   main: 'dist/index.js'
