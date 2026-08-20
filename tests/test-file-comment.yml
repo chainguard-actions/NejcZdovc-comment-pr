@@ -1,4 +1,4 @@
-name: Test basic message comment
+name: Test file-based comment
 on:
   workflow_dispatch:
 jobs:
@@ -7,14 +7,27 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      - name: Create comment markdown file
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/tests/fixtures"
+          cat > "$GITHUB_WORKSPACE/tests/fixtures/comment.md" <<'EOF'
+          ## Test Comment
+
+          This comment was generated from a markdown file.
+
+          - Item 1
+          - Item 2
+          EOF
+
       - id: action
         uses: .
         continue-on-error: true
         with:
-          message: "Hello from GitHub Actions!"
+          file: "tests/fixtures/comment.md"
+          single_comment: "false"
           github_token: ${{ github.token }}
 
-      - name: Assert action ran and produced output or failed gracefully
+      - name: Assert action ran with file input or failed gracefully
         env:
           OUTCOME: ${{ steps.action.outcome }}
           COMMENTED: ${{ steps.action.outputs.commented }}

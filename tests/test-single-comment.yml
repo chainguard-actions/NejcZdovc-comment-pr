@@ -1,4 +1,4 @@
-name: Test basic message comment
+name: Test single comment mode with identifier
 on:
   workflow_dispatch:
 jobs:
@@ -11,10 +11,12 @@ jobs:
         uses: .
         continue-on-error: true
         with:
-          message: "Hello from GitHub Actions!"
+          message: "This is a single comment test."
+          single_comment: "true"
+          identifier: "MY_CUSTOM_IDENTIFIER"
           github_token: ${{ github.token }}
 
-      - name: Assert action ran and produced output or failed gracefully
+      - name: Assert action ran with single_comment mode or failed gracefully
         env:
           OUTCOME: ${{ steps.action.outcome }}
           COMMENTED: ${{ steps.action.outputs.commented }}
