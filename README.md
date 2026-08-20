@@ -8,7 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
-| v2.0.0 | [`v2.0.0`](https://github.com/chainguard-actions/NejcZdovc-comment-pr/tree/v2.0.0) | — |
+| v2.0.0 | [`v2.0.0`](https://github.com/chainguard-actions/NejcZdovc-comment-pr/tree/v2.0.0) | [`9bde107`](https://github.com/NejcZdovc/comment-pr/commit/9bde1072e3dfd7abf2bcf5a90d9b04aca655244f) |
 | v2.1.0 | [`v2.1.0`](https://github.com/chainguard-actions/NejcZdovc-comment-pr/tree/v2.1.0) | [`a423635`](https://github.com/NejcZdovc/comment-pr/commit/a423635d183a8259308e80593c96fecf31539c26) |
 
 ## Privacy
